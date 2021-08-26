@@ -1,5 +1,5 @@
 # Competetive-Programming
-section 1 - (problems based on linear data structures)
+section 1 - (problems based on arrays)
 - Equllibrium indices
 - Continuous subarray
 - wave array
