@@ -1,4 +1,4 @@
-# Competetive-Programming
+# Competitive-Programming
 section 1 - (problems based on arrays)
 - Equllibrium indices
 - Continuous subarray
