@@ -5,3 +5,4 @@ section 1 - (problems based on arrays)
 - wave array
 - Mountain Array
 - Maximum Sub Array
+- Binary Indexed Tree
