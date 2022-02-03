@@ -6,3 +6,5 @@ section 1 - (problems based on arrays)
 - Mountain Array
 - Maximum Sub Array
 - Binary Indexed Tree
+section 2 - (problems based on linkedlist)
+- LoopDetection
