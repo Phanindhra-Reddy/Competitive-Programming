@@ -1,0 +1,126 @@
+//problem statement : sort the biotonic doubly linked list
+/*Biotonic doubly linked list : a doubly linked list whis is first increasing and then decreasing.
+ * strictly increasing or strictly decreasing doubly linkedlists are also a biotonic DLL
+ * 
+ * sample input : 4 8 12 16 20 18 14 6 2
+ * sample output: 2 4 6 8 12 14 16 18 20 */
+
+
+public class SortingBiotinicDLL{
+
+	static class Dnode{
+		int data;
+		Dnode next;
+		Dnode previous;
+	}
+
+
+	static Dnode reverse( Dnode root){
+		Dnode temp = null;
+		Dnode current = root;
+
+		while (current != null){
+			temp = current.previous;
+			current.previous = current.next;
+			current.next = temp;
+			current = current.previous;
+		}
+
+
+		if (temp != null)
+			root = temp.previous;
+		return root;
+	}
+
+
+	static Dnode mergeDLL(Dnode left, Dnode right){
+	
+		if (left == null)
+			return right;
+
+		if (right == null)
+			return left;
+
+	
+		if (left.data < right.data){
+			left.next = mergeDLL(left.next, right);
+			left.next.previous = left;
+			left.previous = null;
+			return left;
+		}else{
+			right.next = mergeDLL(left, right.next);
+			right.next.previous = right;
+			right.previous = null;
+			return right;
+		}
+	}
+
+
+	static Dnode sort(Dnode root){
+		if (root == null || root.next == null)
+			return root;
+
+		Dnode current = root.next;
+
+		while (current != null){
+			if (current.data < current.previous.data)
+				break;
+			current = current.next;
+		}
+
+		if (current == null)
+			return root;
+
+		current.previous.next = null;
+		current.previous = null;	
+		current = reverse(current);
+
+		return mergeDLL(root, current);
+	}
+
+	static Dnode insert( Dnode head, int x){
+	
+		Dnode newNode = new Dnode();
+		newNode.data = x;
+		newNode.previous = null;
+		newNode.next = (head);
+
+	
+		if (head!= null)
+			head.previous = newNode;
+
+		head = newNode;
+		return head;
+		
+	}
+
+
+	static void printList( Dnode head){
+
+		while (head != null){
+			System.out.print(head.data + " ");
+			head = head.next;
+		}
+	}
+
+
+	public static void main(String args[]){
+		Dnode head = null;
+
+		head = insert(head, 2);
+		head = insert(head, 4);
+		head = insert(head, 6);
+		head = insert(head, 8);
+		head = insert(head, 10);
+		head = insert(head, 7);
+		head = insert(head, 5);
+		head = insert(head, 3);
+		head = insert(head, 1);
+		
+		printList(head);
+		System.out.println();
+		head = sort(head);
+		printList(head);
+	}
+}
+
